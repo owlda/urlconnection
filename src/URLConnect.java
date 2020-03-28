@@ -14,13 +14,12 @@ public class URLConnect {
 
         try{
 
-            URL url = new URL("http://pizzaprod.s3-website.us-east-2.amazonaws.com");
+            URL url = new URL("https://denisandrienko.ca");
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.connect();
 
             BufferedReader inputReader = new BufferedReader( new InputStreamReader(urlConnection.getInputStream()));
-
             Map<String, List<String>> headerFields = urlConnection.getHeaderFields();
             for(Map.Entry<String, List<String>> entry: headerFields.entrySet()){
 
@@ -31,7 +30,13 @@ public class URLConnect {
                 for (String string: value){ System.out.println("value: "+value); }
 
             }
-
+            Thread.sleep(1000);
+            System.out.println("Content: ");
+            String parseData = "";
+            while( parseData != null){
+                parseData = inputReader.readLine();
+                System.out.println(parseData);
+            }
         }
         catch(MalformedURLException ex){
 
@@ -39,6 +44,9 @@ public class URLConnect {
         }
         catch (IOException e){
             System.out.println("IOException"+ e.getMessage());
+        }
+        catch (InterruptedException e){
+            System.out.println("InterruptedException"+ e.getMessage());
         }
 
 
