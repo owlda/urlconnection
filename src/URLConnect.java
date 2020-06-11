@@ -34,19 +34,17 @@ public class URLConnect {
             System.out.println("Content: ");
             String parseData = "";
             int count = 0;
+            int links = 0;
             while( parseData != null){
                 parseData = inputReader.readLine();
-
-
-
                 count++;
                 System.out.println(parseData);
-                String scrab = "link";
+                String scrub = "link";
 
                 try{
-                    if (parseData.contains(scrab))
+                    if (parseData.contains(scrub))
                     {
-                        System.out.println("Found!");
+                        links++;
                     }
                 }catch (NullPointerException e){
                     System.out.println("IOException"+ e.getMessage());
@@ -54,6 +52,7 @@ public class URLConnect {
 
             }
             System.out.println("Site lines: "+ count);
+            System.out.println("Site links: "+ links);
         }
         catch(MalformedURLException ex){
 
