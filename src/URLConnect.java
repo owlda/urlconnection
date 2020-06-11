@@ -33,10 +33,13 @@ public class URLConnect {
             Thread.sleep(1000);
             System.out.println("Content: ");
             String parseData = "";
+            int count = 0;
             while( parseData != null){
                 parseData = inputReader.readLine();
+                count++;
                 System.out.println(parseData);
             }
+            System.out.println("Site lines: "+ count);
         }
         catch(MalformedURLException ex){
 
