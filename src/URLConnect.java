@@ -14,7 +14,7 @@ public class URLConnect {
 
         try{
 
-            URL url = new URL("https://denisandrienko.ca");
+            URL url = new URL("http://pizzaprod.s3-website.us-east-2.amazonaws.com");
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.connect();
@@ -36,8 +36,22 @@ public class URLConnect {
             int count = 0;
             while( parseData != null){
                 parseData = inputReader.readLine();
+
+
+
                 count++;
                 System.out.println(parseData);
+                String scrab = "link";
+
+                try{
+                    if (parseData.contains(scrab))
+                    {
+                        System.out.println("Found!");
+                    }
+                }catch (NullPointerException e){
+                    System.out.println("IOException"+ e.getMessage());
+                }
+
             }
             System.out.println("Site lines: "+ count);
         }
