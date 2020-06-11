@@ -63,7 +63,7 @@ public class URLConnect {
             }
             System.out.println("Site lines: "+ count);
             System.out.println("Site links: "+ links);
-            System.out.println("Site script bibliotheques: "+ links);
+            System.out.println("Site script bibliotheques: "+ scripts);
         }
         catch(MalformedURLException ex){
 
