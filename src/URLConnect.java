@@ -14,7 +14,7 @@ public class URLConnect {
 
         try{
 
-            URL url = new URL("https://google.com/");
+            URL url = new URL("http://pizzaprod.s3-website.us-east-2.amazonaws.com");
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.connect();
@@ -35,16 +35,26 @@ public class URLConnect {
             String parseData = "";
             int count = 0;
             int links = 0;
+            int scripts = 0;
             while( parseData != null){
                 parseData = inputReader.readLine();
                 count++;
                 System.out.println(parseData);
-                String scrub = "link";
+                String scrap_link = "link";
+                String scrap_script = "script";
 
                 try{
-                    if (parseData.contains(scrub))
+                    if (parseData.contains(scrap_link))
                     {
                         links++;
+                    }
+                }catch (NullPointerException e){
+                    System.out.println("IOException"+ e.getMessage());
+                }
+                try{
+                    if (parseData.contains(scrap_script))
+                    {
+                        scripts++;
                     }
                 }catch (NullPointerException e){
                     System.out.println("IOException"+ e.getMessage());
@@ -53,6 +63,7 @@ public class URLConnect {
             }
             System.out.println("Site lines: "+ count);
             System.out.println("Site links: "+ links);
+            System.out.println("Site script bibliotheques: "+ links);
         }
         catch(MalformedURLException ex){
 
