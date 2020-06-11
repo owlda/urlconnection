@@ -4,8 +4,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class URLConnect {
 
@@ -36,6 +39,7 @@ public class URLConnect {
             int count = 0;
             int links = 0;
             int scripts = 0;
+            int counter_scripts = 0;
             while( parseData != null){
                 parseData = inputReader.readLine();
                 count++;
@@ -49,7 +53,7 @@ public class URLConnect {
                         links++;
                     }
                 }catch (NullPointerException e){
-                    System.out.println("IOException"+ e.getMessage());
+                    System.out.println("NullPointerException"+ e.getMessage());
                 }
                 try{
                     if (parseData.contains(scrap_script))
@@ -57,13 +61,26 @@ public class URLConnect {
                         scripts++;
                     }
                 }catch (NullPointerException e){
-                    System.out.println("IOException"+ e.getMessage());
+                    System.out.println("NullPointerException"+ e.getMessage());
+                }
+
+                try{
+
+                    String patternString = "script";
+                    Pattern pattern = Pattern.compile(patternString);
+                    Matcher matcher = pattern.matcher(parseData);
+
+                    while (matcher.find()) {
+                        counter_scripts++;
+                    }
+                }catch (NullPointerException e){
+                    System.out.println("NullPointerException"+ e.getMessage());
                 }
 
             }
             System.out.println("Site lines: "+ count);
             System.out.println("Site links: "+ links);
-            System.out.println("Site script bibliotheques: "+ scripts);
+            System.out.println("Site script bibliotheques: "+ counter_scripts);
         }
         catch(MalformedURLException ex){
 
