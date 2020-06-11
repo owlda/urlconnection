@@ -14,7 +14,7 @@ public class URLConnect {
 
         try{
 
-            URL url = new URL("http://pizzaprod.s3-website.us-east-2.amazonaws.com");
+            URL url = new URL("https://google.com/");
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.connect();
